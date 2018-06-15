@@ -1,0 +1,23 @@
+
+.message {
+  display:inline-block;
+  clear: both;
+  padding: 20px;
+  border-radius: 30px;
+  margin-bottom: 2px;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.me {
+  background: #0066ff;
+  color: white;
+  float: right;
+  border-bottom-left-radius: 10px;
+}
+
+.him {
+  background: #f2f2f2;
+  color: black;
+  float: left;
+  border-bottom-right-radius: 10px;
+}

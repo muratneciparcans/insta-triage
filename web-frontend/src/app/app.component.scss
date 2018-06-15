@@ -24,12 +24,14 @@
 
   .conversation-container {
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border: 10px solid rgba(255, 255, 255, 0.5);
+    right: 70px;
+    bottom: 70px;
+    // border: 10px solid rgba(255, 255, 255, 0.5);
     margin: 10px;
+
+    left: 45%;
+    //top: 50%;
+    //transform: translateY(-50%);
   }
 
 }
