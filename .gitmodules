@@ -1,0 +1,3 @@
+[submodule "heartbeat"]
+	path = heartbeat
+	url = git@github.com:gaviriar/heartbeat.git
