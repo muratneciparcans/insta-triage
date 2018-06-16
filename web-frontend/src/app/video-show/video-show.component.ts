@@ -15,7 +15,6 @@ export class VideoShowComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    console.log(this.videoEl);
     this.ws.on('video', (data) => {
       console.log(data);
       this.setVideoUrl(data.file);

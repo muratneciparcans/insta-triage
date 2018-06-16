@@ -1,0 +1,66 @@
+
+.report-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  .report {
+    margin: 30px auto;
+    height: 90%;
+    max-width: 900px;
+
+    display: grid;
+    grid-template-rows: 30% 40% 15% 15%;
+
+    -webkit-box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.75);
+    box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.75);
+
+    .rowA {
+      background-color: azure;
+
+      p.title {
+        text-align: center;
+        font-size: 20px;
+        font-weight: bold;
+        margin-top: 16px;
+      }
+
+      p.name {
+        text-align: center;
+        font-size: 23px;
+        font-family: monospace;
+        margin-top: 16px;
+      }
+
+      .date {
+        margin: 20px auto;
+        max-width: 80%;
+      }
+    }
+    .rowB {
+      border-top: black 2px solid;
+      border-bottom: black 2px solid;
+    }
+    .rowC {
+      p{
+        text-align: center;
+        font-size: 20px;
+        font-weight: bold;
+        margin-top: 16px;
+      }
+    }
+    .rowD {
+      border-top: black 2px solid;
+
+      p{
+        text-align: center;
+        font-size: 20px;
+        font-weight: bold;
+        margin-top: 16px;
+      }
+    }
+  }
+}
