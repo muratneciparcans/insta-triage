@@ -6,7 +6,7 @@ from src.script_parser import start_script
 from src.server import server
 
 def main():
-	server.start()
+    server.start()
     start_script(server)
 
 if __name__ == '__main__':

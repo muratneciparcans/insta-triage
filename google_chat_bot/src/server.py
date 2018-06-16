@@ -20,16 +20,19 @@ def send_message(direction, message):
     print '{}: {}'.format(direction, message)
     socketio.emit('message', msg)
 
+
+## For Testing purposes
 class Message(Resource):
-    def get(self, id):
-        send_message(False, id)
+    def get(self, id, direction):
+        send_message(direction, id)
 
 class Video(Resource):
     def get(self, path):
-        send_video('/usr/local/bin')
-        
-api.add_resource(Message, '/message/<string:id>')
+        send_video(path)
+
+api.add_resource(Message, '/message/<string:id>/<string:direction>')
 api.add_resource(Video, '/video/<string:path>')
+
 
 def start():
     socketio.run(app, "0.0.0.0", port=5000)

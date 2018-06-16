@@ -17,8 +17,13 @@ export class ConversationComponent implements OnInit {
     const messageIn: MessageModel = new MessageModel(Direction.IN, 'I am message INPUT payload');
     const messageOut: MessageModel = new MessageModel(Direction.OUT, 'I am message OUTPUT payload');
     ws.on('message', (data) => {
-      console.log(data)
-    })
+      console.log(data);
+      const msg = new MessageModel(
+        data.direction === 'in' ? Direction.IN : Direction.OUT,
+        data.message
+      );
+      this.messages.push(msg);
+    });
   }
 
   ngOnInit() {
