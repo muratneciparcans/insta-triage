@@ -24,9 +24,9 @@ def start_script(server):
         server.send_message('out', current_question["text"])
 
         # Video File
-        video_path = os.path.join(file_directory, "videos", current_question["video"])
+        video_path = os.path.join("/assets/videos", current_question["video"])
 
-        server.send_video("file://" + video_path)
+        server.send_video(video_path)
 
         # Sleep for length of file (@TODO: Send still picture)
         time.sleep(get_length(video_path))

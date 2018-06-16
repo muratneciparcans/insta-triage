@@ -19,10 +19,12 @@ export class VideoShowComponent implements OnInit {
       console.log(data);
       this.setVideoUrl(data.file);
     });
+
+    this.ws.send('started');
   }
 
   setVideoUrl(url: string) {
-    this.videoEl.nativeElement.src = url;
+    this.videoEl.nativeElement.src = 'http://localhost:4200' + url;
     this.videoEl.nativeElement.play();
   }
 

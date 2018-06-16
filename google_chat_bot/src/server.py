@@ -5,37 +5,53 @@ from flask_socketio import SocketIO
 from flask_restful import Resource, Api
 
 import utils
+app = Flask(__name__)
+api = Api(app)
+socketio = SocketIO(app)
+
+@socketio.on('connect')
+def test_connect():
+    socketio.emit('video', {'file': '/assets/videos/remain_standing.mp4'})
+
+@socketio.on('disconnect')
+def test_disconnect():
+    print('Client disconnected')
+
+@socketio.on('started')
+def test_connect2():
+    socketio.emit('video', {'file': '/assets/videos/remain_standing.mp4'})
+
 
 class Server(object):
     def __init__(self):
-        self.app = Flask(__name__)
-        self.api = Api(self.app)
-        self.socketio = SocketIO(self.app)
+        socketio.on(self, 'started')
+        self.app = app;
 
     def send_video(self, file_path):
         msg = {}
         msg['file'] = file_path
         print '{}: {}'.format('file', msg)
-        self.socketio.emit('video', msg)
+        socketio.emit('video', msg)
 
     def send_message(self, direction, message):
         msg = {}
         msg['direction'] = direction
         msg['message'] = message
         print '{}: {}'.format(direction, message)
-        self.socketio.emit('message', msg)
+        socketio.emit('message', msg)
 
     def send_data(self, payload):
         print '{}: {}'.format('payload', payload)
-        self.socketio.emit('data', payload)
+        socketio.emit('data', payload)
 
     def send_reset(self):
         print 'reset'
-        self.socketio.emit('reset', {})
+        socketio.emit('reset', {})
 
     def start(self):
-        self.socketio.run(self.app, "0.0.0.0", port=5000)
-        
+        socketio.run(self.app, "0.0.0.0", port=5000)
+
+
 class TestStuff:
     ## For Testing purposes
     class Message(Resource):

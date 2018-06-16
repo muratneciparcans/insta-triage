@@ -18,4 +18,8 @@ export class WebsocketService {
   on(event: string, callback: Function) {
     this.socket.on(event, callback);
   }
+  send( video: string ) {
+    this.socket.emit(video, '');
+    this.socket.send(video, '');
+  }
 }
