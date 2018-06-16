@@ -1,45 +1,38 @@
 import { Component, OnInit } from '@angular/core';
 import { WebsocketService } from './websocket.service';
+import {PatientModel} from './Patient.model'
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
+
 export class AppComponent implements OnInit {
-
-  public name: string;
-  public born: Date;
-
-  public estimated_waiting_time: string;
-
-  public pain: number;
-
-  public no_patient: boolean;
-
-  public patient_infos: string[] = [
-    'Pain in the left arm',
-    'The patient is not able to move the limb'
-  ];
-
+  public patient: PatientModel = new PatientModel();
   constructor(private ws: WebsocketService) {}
 
   ngOnInit() {
-    this.ws.on('registry', (data) => this.checkDataFromPayload(data.payload) );
+    this.ws.on('data', (data) => this.checkDataFromPayload(data) );
     this.ws.on('reset', (data) => this.reset(data));
   }
 
   reset(data: any) {
-    console.log("Reset DATA: ", data);
+    console.log('Reset DATA: ', data);
+    this.patient = new PatientModel();
   }
 
-  checkDataFromPayload(payload: any) {
-    console.log("Payload DATA", payload);
-    // @todo: implement
+  checkDataFromPayload(data: any) {
+    console.log('Payload DATA', data);
+    for (let k of Object.getOwnPropertyNames(data)) {
+      console.log(k, ' :',  data[k])
+      this.patient[k] = data[k];
+    }
+    console.log(this.patient);
   }
 
   getProgressValue(): number {
-    return this.pain * 10;
+    return this.patient.pain * 10;
   }
 }
 
