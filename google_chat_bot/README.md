@@ -15,6 +15,7 @@ On macOS, to install `pyaudio` with pip, you first have to install `brew install
 External Dependencies:
 ```
 brew install ffmpeg
+brew install libevent
 ```
 
 ## Dialogflow
