@@ -19,7 +19,7 @@ export class WebsocketService {
     this.socket.on(event, callback);
   }
   send( video: string ) {
-    this.socket.emit(video, '');
-    this.socket.send(video, '');
+    this.socket.emit(video);
+    this.socket.send(video);
   }
 }

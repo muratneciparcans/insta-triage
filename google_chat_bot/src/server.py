@@ -24,8 +24,7 @@ def test_connect2():
 
 class Server(object):
     def __init__(self):
-        socketio.on(self, 'started')
-        self.app = app;
+        self.app = app
 
     def send_video(self, file_path):
         msg = {}
