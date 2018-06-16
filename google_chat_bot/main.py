@@ -1,13 +1,30 @@
 #!/usr/bin/env python
 
-from __future__ import division
+import threading
+import time
 
+from functools import partial
+
+from src.server import Server
 from src.script_parser import start_script
-from src.server import server
 
 def main():
-    server.start()
-    start_script(server)
+    server = Server()
+
+    server_thread = threading.Thread(target = server.start)
+    server_thread.daemon = True
+    server_thread.start()
+
+    server_function = partial(start_script, server)
+
+    # # @TODO: Do I Have to sleep?
+    script_thread = threading.Thread(target = server_function)
+    script_thread.daemon = True
+    script_thread.start()
+
+    # Don't stop until ctrl+c
+    while True:
+        time.sleep(1)
 
 if __name__ == '__main__':
     main()

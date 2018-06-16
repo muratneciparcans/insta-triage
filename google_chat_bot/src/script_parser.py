@@ -1,5 +1,8 @@
 import json
 import os
+import subprocess
+import re
+import time
 
 from recorder import record
 from recorder import RATE
@@ -20,11 +23,19 @@ def start_script(server):
         current_question = script[question_key]
 
         # Joanna Question UI
+        print current_question["text"]
+
         server.send_message('out', current_question["text"])
 
         # Video File
         video_path = os.path.join(file_directory, "videos", current_question["video"])
-        server.send_video(video_path)
+
+        server.send_video("file://" + video_path)
+
+        # Sleep for length of file (@TODO: Send still picture)
+        time.sleep(get_length(video_path))
+
+        time.sleep(100000)
 
         if "answer" in current_question:
             answers = current_question["answer"]
@@ -38,7 +49,7 @@ def start_script(server):
             content = result.alternatives[0].transcript
 
             # Patient answer
-            server.send_message('in', content)
+            # server.send_message('in', content)
 
 
             key_list = answers.keys();
@@ -65,4 +76,15 @@ def start_script(server):
         else:
             # End the questionaire
             break
+
+
+def get_length(filename):
+  result = subprocess.Popen(["ffprobe", filename], stdout = subprocess.PIPE, stderr = subprocess.STDOUT)
+  first_parsing = [x for x in result.stdout.readlines() if "Duration" in x]
+
+  print 'Duration Data'
+  print first_parsing[0].strip()
+  match_time = re.match( r'Duration:\s*[0-9]*:[0-9]*:([0-9]*).*', first_parsing[0].strip())
+
+  return int(match_time.group(1)) + 1
 

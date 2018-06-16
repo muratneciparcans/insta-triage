@@ -1,7 +1,7 @@
 {
     "question_1": {
-        "text": "Please remain standing. 5, 4, 3, 2, 1",
-        "video": "some_file.mp4",
+        "text": "Please remain standing.",
+        "video": "remain_standing.mp4",
         "next": "question_2"
     },
     "question_2": {

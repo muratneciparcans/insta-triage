@@ -12,6 +12,11 @@ Starting point is `test.py` - project is halted.
 #### macOS
 On macOS, to install `pyaudio` with pip, you first have to install `brew install portaudio`
 
+External Dependencies:
+```
+brew install ffmpeg
+```
+
 ## Dialogflow
 Still unclear: Conversational Logic
 This minimal prototype is based on Dialogflow.
