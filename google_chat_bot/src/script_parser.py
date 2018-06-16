@@ -63,6 +63,7 @@ def start_script(server):
             key_list.remove("any")
 
             if not key_list:
+                update_form(server, current_question)
                 question_key = answers["any"]
             else:
                 found_answer = False;
@@ -71,11 +72,11 @@ def start_script(server):
                         print "Found " + answer + " in " + content
                         question_key = answers[answer]
                         found_answer = True
-
                         update_form(server, current_question)
                         break;
 
                 if not found_answer:
+                    update_form(server, current_question)
                     question_key = answers["any"]
         elif "next" in current_question:
             print 'found next'
