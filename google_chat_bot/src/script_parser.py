@@ -73,7 +73,8 @@ def start_script(server):
                 if not found_answer:
                     question_key = answers["any"]
         elif "data" in current_question:
-            server.send_register(current_question["data"])
+            for d in current_question["data"]:
+                server.send_data(d)
         elif "next" in current_question:
             question_key = current_question["next"]
         else:
