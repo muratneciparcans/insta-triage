@@ -28,7 +28,7 @@ class Message(Resource):
 
 class Video(Resource):
     def get(self, path):
-        send_video(path)
+        send_video('http://nickdesaulniers.github.io/netfix/demo/frag_bunny.mp4')
 
 api.add_resource(Message, '/message/<string:id>/<string:direction>')
 api.add_resource(Video, '/video/<string:path>')
