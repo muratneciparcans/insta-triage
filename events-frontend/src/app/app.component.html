@@ -7,27 +7,25 @@
       <p class="title">TRIAGE REPORT</p>
 
       <div>
-        <p class="name">James Newton, born 17.03.1973</p>
+        <p class="name">{{ patient.name }}, born 17.03.1973</p>
       </div>
 
       <div class="row date">
-        <div class="col-4">DATE: {{ report_date_start | amDateFormat:'DD-MM-YYYY' }}</div>
-        <div class="col-4">START: {{ report_date_start | amDateFormat: 'HH:mm' }}</div>
-        <div class="col-4">END: {{ report_date_end | amDateFormat: 'HH:mm' }}</div>
+        <div class="col-4">DATE: {{ patient.start_date | amDateFormat:'DD-MM-YYYY' }}</div>
+        <div class="col-4">START: {{ patient.end_date | amDateFormat: 'HH:mm' }}</div>
+        <div class="col-4">END: {{ patient.end_date | amDateFormat: 'HH:mm' }}</div>
       </div>
     </div>
     <div class="rowB"></div>
     <div class="rowC">
-      <p>ACTION TAKEN: {{ action_taken }}</p>
+      <p>ACTION TAKEN: {{ patient.action }}</p>
     </div>
     <div class="rowD">
-      <p>ESTIMATED WAITING TIME: {{ estimated_waiting_time }}</p>
+      <p>ESTIMATED WAITING TIME: {{ patient.estimated_waiting }}</p>
     </div>
 
   </div>
 
 </div>
 
-<div class="" *ngFor="let payload of payloads">
-  <div class="payload">{{ payload }}</div>
-</div>
+<pre class="payload">{{ patient | json }}</pre>
