@@ -25,7 +25,11 @@ export class VideoShowComponent implements OnInit {
 
   setVideoUrl(url: string) {
     this.videoEl.nativeElement.src = 'http://localhost:4200' + url;
-    this.videoEl.nativeElement.play();
+    try {
+      this.videoEl.nativeElement.play();
+    } catch (e) {
+      console.log('video is not ready to play');
+    }
   }
 
 }
