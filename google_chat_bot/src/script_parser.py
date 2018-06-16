@@ -21,7 +21,7 @@ def start_script(server):
 
     while True:
         current_question = script[question_key]
-
+        
         # Joanna Question UI
         print current_question["text"]
 
@@ -70,7 +70,8 @@ def start_script(server):
 
                 if not found_answer:
                     question_key = answers["any"]
-
+        elif "data" in current_question:
+            server.send_register(current_question["data"])
         elif "next" in current_question:
             question_key = current_question["next"]
         else:

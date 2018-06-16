@@ -7,32 +7,34 @@
       <p class="title">TRIAGE REPORT</p>
 
       <div>
-        <p class="name" *ngIf="!no_patient">Waiting for patient...</p>
-        <p class="name" *ngIf="no_patient">{{ name }}, born {{ born }}</p>
+        <p class="name" *ngIf="!patient.name">Waiting for patient...</p>
+        <p class="name" *ngIf="patient.name">{{ name }}, born {{ born }}</p>
       </div>
 
       <div class="row date">
-
-        <div class="col-4">DATE: {{ report_date_start | amDateFormat:'DD-MM-YYYY' }}</div>
-        <div class="col-4">START: {{ report_date_start | amDateFormat: 'HH:mm' }}</div>
-        <div class="col-4">END: {{ report_date_end | amDateFormat: 'HH:mm' }}</div>
+        <div class="col-4">DATE: {{ patient.start_date | amDateFormat:'DD-MM-YYYY' }}</div>
+        <div class="col-4">START: {{ patient.end_date | amDateFormat: 'HH:mm' }}</div>
+        <div class="col-4">END: {{ patient.end_date | amDateFormat: 'HH:mm' }}</div>
       </div>
     </div>
     <div class="rowB row">
       <div class="col-6"><img src="/assets/5345_1.jpg" alt=""></div>
       <div class="col-6">
 
-        <div *ngIf="!no_patient">
+        <div *ngIf="!patient.name">
           <p class="p-caps">Waiting for patient data</p>
         </div>
 
-        <div *ngIf="no_patient">
-          <!-- Stuff that the patient answered -->
-          <p class="title">Information provided by patient</p>
-          <div *ngFor="let patient_info of patient_infos">
-            <p class="p-data">- {{ patient_info }}</p>
-          </div>
+        <div *ngIf="patient.name">
 
+
+          <!-- Stuff that the patient answered -->
+          <div *ngIf="patient.patient_info !== undefined">
+            <p class="title">Information provided by patient</p>
+            <div *ngFor="let patient_info of patient_infos">
+              <p class="p-data">- {{ patient_info }}</p>
+            </div>
+          </div>
           <hr>
 
           <div class="pain">
@@ -46,16 +48,12 @@
       </div>
     </div>
     <div class="rowC">
-      <p>ACTION TAKEN: {{ action_taken }}</p>
+      <p>ACTION TAKEN: {{ patient.action }}</p>
     </div>
     <div class="rowD">
-      <p>ESTIMATED WAITING TIME: {{ estimated_waiting_time }}</p>
+      <p>ESTIMATED WAITING TIME: {{ patient.estimated_waiting }}</p>
     </div>
-
   </div>
-
 </div>
 
-<div class="" *ngFor="let payload of payloads">
-  <div class="payload">{{ payload }}</div>
-</div>
+<pre class="payload">{{ patient | json }}</pre>
