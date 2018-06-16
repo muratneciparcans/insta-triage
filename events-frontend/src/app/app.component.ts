@@ -26,7 +26,11 @@ export class AppComponent implements OnInit {
     console.log('Payload DATA', data);
     for (let k of Object.getOwnPropertyNames(data)) {
       console.log(k, ' :',  data[k])
-      this.patient[k] = data[k];
+      if (k.indexOf('date') >= 0) {
+        this.patient[k] = new Date(data[k]);
+      } else {
+        this.patient[k] = data[k];
+      }
     }
     console.log(this.patient);
   }

@@ -1,12 +1,13 @@
 export class PatientModel {
-  public name: string;
-  public start_date: Date;
-  public end_date: Date;
-  public action: string;
-  public notified: string;
-  public estimated_waiting: string;
-  public heartrate: string;
-  public pain: number;
+  public name: string = undefined;
+  public start_date: Date = undefined;
+  public end_date: Date = undefined;
+  public action: string = undefined;
+  public notified: string = undefined;
+  public estimated_waiting: string = undefined;
+  public heartrate: string = undefined;
+  public pain: number = undefined;
   public patient_infos: string[];
+  public born: Date = undefined;
   constructor() {}
 }

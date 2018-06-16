@@ -8,7 +8,8 @@
 
       <div>
         <p class="name" *ngIf="!patient.name">Waiting for patient...</p>
-        <p class="name" *ngIf="patient.name">{{ name }}, born {{ born }}</p>
+        <p class="name" *ngIf="patient.name">{{ patient.name }}</p>
+        <div *ngIf="patient.born"> {{ patient.born }}</div>
       </div>
 
       <div class="row date">
@@ -29,7 +30,7 @@
 
 
           <!-- Stuff that the patient answered -->
-          <div *ngIf="patient.patient_info !== undefined">
+          <div *ngIf="patient.patient_infos !== undefined">
             <p class="title">Information provided by patient</p>
             <div *ngFor="let patient_info of patient_infos">
               <p class="p-data">- {{ patient_info }}</p>

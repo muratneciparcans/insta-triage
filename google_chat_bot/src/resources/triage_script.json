@@ -4,7 +4,7 @@
         "video": "some_file.mp4",
         "next": "question_2",
         "data": [{
-            "start_date": "16/06/2018 08:55"
+            "start_date": "2018-06-16T08:55:0.0Z"
         }]
     },
     "question_2": {
@@ -47,7 +47,10 @@
             "nine": "question_8",
             "ten": "question_8",
             "any": "question_7"
-        }
+        },
+        "data": [{
+            "pain": 8
+        }]
     },
     "question_7": {
         "text": "Don’t worry James, it’s going to be alright.",
