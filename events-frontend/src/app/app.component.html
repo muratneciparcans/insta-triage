@@ -39,7 +39,7 @@
           <hr>
 
           <div class="pain">
-            <p>PAIN: <span>{{ pain }}/10</span></p>
+            <p>PAIN: <span>{{ this.patient.pain }}/10</span></p>
             <div class="progress">
               <div class="progress-bar" role="progressbar" [style.width]="getProgressValue() + '%'" [attr.aria-valuenow]="getProgressValue()" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
