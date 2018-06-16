@@ -17,10 +17,14 @@ export class VideoShowComponent implements OnInit {
   ngOnInit() {
     console.log(this.videoEl);
     this.ws.on('video', (data) => {
-      // console.log(data.message);
-      this.videoEl.nativeElement.src = data.message;
-      this.videoEl.nativeElement.play();
+      console.log(data);
+      this.setVideoUrl(data.file);
     });
+  }
+
+  setVideoUrl(url: string) {
+    this.videoEl.nativeElement.src = url;
+    this.videoEl.nativeElement.play();
   }
 
 }
