@@ -4,6 +4,7 @@ import subprocess
 import re
 import time
 
+import utils
 from recorder import record
 from recorder import RATE
 from recognization import recognize
@@ -76,9 +77,18 @@ def start_script(server):
 
 
 def get_length(filename):
-  result = subprocess.Popen(["ffprobe", filename], stdout = subprocess.PIPE, stderr = subprocess.STDOUT)
-  first_parsing = [x for x in result.stdout.readlines() if "Duration" in x]
+  curr_path = os.path.dirname(utils.__file__)
+  print curr_path
+  # file_path = os.path.join(curr_path, '../../web-frontend/src', filename)
+  file_path = curr_path + '/../../web-frontend/src' + filename
+  print "fle path: -----"
+  print file_path
+  print "----"
 
+  assert (not os.path.isfile(file_path)), "Should be a file"
+  result = subprocess.Popen(["ffprobe", file_path], stdout = subprocess.PIPE, stderr = subprocess.STDOUT)
+  first_parsing = [x for x in result.stdout.readlines() if "Duration" in x]
+  print result.stdout.readlines()
   print 'Duration Data'
   print first_parsing[0].strip()
   match_time = re.match( r'Duration:\s*[0-9]*:[0-9]*:([0-9]*).*', first_parsing[0].strip())
