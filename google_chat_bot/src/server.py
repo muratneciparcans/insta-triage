@@ -20,6 +20,12 @@ def send_message(direction, message):
     print '{}: {}'.format(direction, message)
     socketio.emit('message', msg)
 
+def send_register(payload):
+    msg = {}
+    msg['payload'] = payload
+    print '{}: {}'.format('payload', msg)
+    socketio.emit('registry', msg)
+
 
 ## For Testing purposes
 class Message(Resource):
@@ -30,8 +36,13 @@ class Video(Resource):
     def get(self, path):
         send_video('http://nickdesaulniers.github.io/netfix/demo/frag_bunny.mp4')
 
+class AppRegister(Resource):
+    def get(self, payload):
+        send_register(payload)
+
 api.add_resource(Message, '/message/<string:id>/<string:direction>')
 api.add_resource(Video, '/video/<string:path>')
+api.add_resource(AppRegister, '/registry/<string:payload>')
 
 
 def start():

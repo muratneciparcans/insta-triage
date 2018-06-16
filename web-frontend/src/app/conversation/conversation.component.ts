@@ -14,8 +14,6 @@ export class ConversationComponent implements OnInit {
   constructor(
     private ws: WebsocketService
   ) {
-    const messageIn: MessageModel = new MessageModel(Direction.IN, 'I am message INPUT payload');
-    const messageOut: MessageModel = new MessageModel(Direction.OUT, 'I am message OUTPUT payload');
     ws.on('message', (data) => {
       console.log(data);
       const msg = new MessageModel(

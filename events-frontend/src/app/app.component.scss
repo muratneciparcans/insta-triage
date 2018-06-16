@@ -1,0 +1,105 @@
+
+.report-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  .report {
+    margin: 30px auto;
+    min-height: 90%;
+    max-width: 900px;
+
+    display: grid;
+    grid-template-rows: 30% 40% 15% 15%;
+
+    -webkit-box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.75);
+    box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.75);
+
+    .rowA {
+      background-color: azure;
+
+      p.title {
+        text-align: center;
+        font-size: 20px;
+        font-weight: bold;
+        margin-top: 16px;
+      }
+
+      p.name {
+        text-align: center;
+        font-size: 23px;
+        font-family: monospace;
+        margin-top: 16px;
+      }
+
+      .date {
+        margin: 20px auto;
+        max-width: 80%;
+      }
+
+
+    }
+    .rowB {
+      margin-left: 0px;
+      margin-right: 0px;
+      border-top: black 2px solid;
+      border-bottom: black 2px solid;
+
+      img {
+        max-height: 470px;
+        margin: auto;
+        display: block;
+      }
+
+      p {
+        text-align: center;
+        font-size: 18px;
+        margin-top: 16px;
+      }
+
+      .p-data {
+        text-align: left;
+        font-size: 26px;
+      }
+
+      .p-caps {
+        font-size: 26px;
+        font-variant-caps: all-small-caps;
+      }
+
+      p.title {
+        text-align: center;
+        font-size: 20px;
+        font-weight: bold;
+        margin-top: 16px;
+      }
+
+      .pain {
+        p {
+          font-size: 26px;
+        }
+      }
+    }
+    .rowC {
+      p{
+        text-align: center;
+        font-size: 20px;
+        font-weight: bold;
+        margin-top: 16px;
+      }
+    }
+    .rowD {
+      border-top: black 2px solid;
+
+      p{
+        text-align: center;
+        font-size: 20px;
+        font-weight: bold;
+        margin-top: 16px;
+      }
+    }
+  }
+}

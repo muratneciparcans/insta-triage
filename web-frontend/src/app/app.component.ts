@@ -8,8 +8,4 @@ import { WebsocketService } from './websocket.service';
 })
 export class AppComponent {
   title = 'app';
-
-  constructor(private websocketService: WebsocketService) {
-    this.websocketService.testVideo();
-  }
 }
