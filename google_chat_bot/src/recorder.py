@@ -9,8 +9,12 @@ import pyaudio
 import wave
 import io
 import tempfile
+import readchar
+import time
 
+# @Note Silence Detection to difficult
 THRESHOLD = 2000  # audio levels not normalised.
+
 CHUNK_SIZE = 1024
 FORMAT = pyaudio.paInt16
 FRAME_MAX_VALUE = 2 ** 15 - 1
@@ -29,9 +33,61 @@ def record():
     stream = audio.open(format=FORMAT, channels=CHANNELS, 
             rate=RATE, input=True, output=True, frames_per_buffer=CHUNK_SIZE)
 
+    data_all = array('h')
+    record_while_loud(stream, data_all) # Too risky
+    # record_with_space(stream, data_all)
+
+    sample_width = audio.get_sample_size(FORMAT)
+    stream.stop_stream()
+    stream.close()
+    audio.terminate()
+
+    # Save temporary file
+    wave_file = tempfile.NamedTemporaryFile().name
+
+    wf = wave.open(wave_file, 'wb')
+    wf.setnchannels(CHANNELS)
+    wf.setsampwidth(sample_width)
+    wf.setframerate(RATE)
+    wf.writeframes(data_all)
+    wf.close()
+
+    # @TODO: Check if this is actually necessary
+    with io.open(wave_file, 'rb') as audio_file:
+        return audio_file.read()
+
+def record_with_space(stream, data_all):
+    recording = False
+
+    while True:
+        key = readchar.readchar()
+        if key == ' ':
+            break;
+        else:
+            time.sleep(0.01)
+
+    time.sleep(0.01)
+
+    while True:
+        # little endian, signed short$
+        print 'I got here'
+        print CHUNK_SIZE
+        data_chunk = array('h', stream.read(CHUNK_SIZE))
+
+
+        if byteorder == 'big':
+            data_chunk.byteswap()
+        data_all.extend(data_chunk)
+
+        key = readchar.readchar()
+        if key == ' ':
+            break;
+        else:
+            time.sleep(0.01)
+
+def record_while_loud(stream, data_all):
     silent_chunks = 0
     audio_started = False
-    data_all = array('h')
 
     while True:
         # little endian, signed short
@@ -55,25 +111,6 @@ def record():
             audio_started = True
 
     print 'Detected silence'
-
-    sample_width = audio.get_sample_size(FORMAT)
-    stream.stop_stream()
-    stream.close()
-    audio.terminate()
-
-    # Save temporary file
-    wave_file = tempfile.NamedTemporaryFile().name
-
-    wf = wave.open(wave_file, 'wb')
-    wf.setnchannels(CHANNELS)
-    wf.setsampwidth(sample_width)
-    wf.setframerate(RATE)
-    wf.writeframes(data_all)
-    wf.close()
-
-    # @TODO: Check if this is actually necessary
-    with io.open(wave_file, 'rb') as audio_file:
-        return audio_file.read()
 
 def is_silent(data_chunk):
     """Returns 'True' if below the 'silent' threshold"""
