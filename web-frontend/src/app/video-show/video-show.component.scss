@@ -13,6 +13,9 @@
 }
 
 video {
-  min-width: 100%;
-  min-height: 100%;
+  max-width: 70%;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-block;
+  position: absolute;
 }
