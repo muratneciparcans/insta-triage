@@ -23,3 +23,6 @@ requests==2.18.4
 rsa==3.4.2
 six==1.11.0
 urllib3==1.22
+Flask==1.0.2
+Flask-RESTful==0.3.6
+Flask-SocketIO==3.0.1

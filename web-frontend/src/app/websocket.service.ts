@@ -1,14 +1,9 @@
 import { Injectable } from '@angular/core';
 
-import { Subject } from 'rxjs/Subject';
-import { Observable } from 'rxjs/Observable';
-
 import * as io from 'socket.io-client';
 import * as ss from 'socket.io-stream';
 
 import { WebCamComponent } from 'ng2-webcam';
-
-const s_s: any = ss;
 
 @Injectable()
 export class WebsocketService {
@@ -18,7 +13,7 @@ export class WebsocketService {
   private socket;
 
   constructor() {
-    // this.socket = io.connect(this.url);
+    this.socket = io.connect(this.url);
     this.testVideo();
   }
 
@@ -47,20 +42,7 @@ export class WebsocketService {
     // });
   }
 
-  sendMessage(message){
-    this.socket.emit('add-message', message);
+  on(event: string, callback: Function) {
+    this.socket.on(event, callback);
   }
-
-  getMessages() {
-    return new Observable(observer => {
-      this.socket = io(this.url);
-      this.socket.on('message', (data) => {
-        observer.next(data);
-      });
-      return () => {
-        this.socket.disconnect();
-      };
-    });
-  }
-
 }
