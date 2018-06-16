@@ -6,6 +6,17 @@
   background: #333 fixed;
   background-size: cover;
 
+  .logo {
+    position: absolute;
+    top: 16px;
+    left: 50px;
+    font-size: 70px;
+    font-family: unset;
+  }
+  .logo-bold {
+    font-weight: bold;
+  }
+
   /* The only rule that matters */
   #video-background {
 
