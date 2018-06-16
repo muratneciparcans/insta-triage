@@ -8,7 +8,7 @@
 
   .report {
     margin: 30px auto;
-    height: 90%;
+    min-height: 90%;
     max-width: 900px;
 
     display: grid;
@@ -39,10 +39,49 @@
         margin: 20px auto;
         max-width: 80%;
       }
+
+
     }
     .rowB {
+      margin-left: 0px;
+      margin-right: 0px;
       border-top: black 2px solid;
       border-bottom: black 2px solid;
+
+      img {
+        max-height: 470px;
+        margin: auto;
+        display: block;
+      }
+
+      p {
+        text-align: center;
+        font-size: 18px;
+        margin-top: 16px;
+      }
+
+      .p-data {
+        text-align: left;
+        font-size: 26px;
+      }
+
+      .p-caps {
+        font-size: 26px;
+        font-variant-caps: all-small-caps;
+      }
+
+      p.title {
+        text-align: center;
+        font-size: 20px;
+        font-weight: bold;
+        margin-top: 16px;
+      }
+
+      .pain {
+        p {
+          font-size: 26px;
+        }
+      }
     }
     .rowC {
       p{

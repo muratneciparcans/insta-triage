@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { WebsocketService } from './websocket.service';
 
 @Component({
@@ -6,18 +6,41 @@ import { WebsocketService } from './websocket.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  public payloads: any = [];
+export class AppComponent implements OnInit {
+
+  public name: string;
+  public born: Date;
 
   public estimated_waiting_time: string;
+
+  public pain: number;
+
+  public no_patient: boolean;
+
+  public patient_infos: string[] = [
+    'Pain in the left arm',
+    'The patient is not able to move the limb'
+  ];
 
   constructor(private ws: WebsocketService) {}
 
   ngOnInit() {
-    this.ws.on('registry', (data) => {
-      console.log(data);
-      // do stuff
-      this.payloads.push(data.payload);
-    });
+    this.ws.on('registry', (data) => this.checkDataFromPayload(data.payload) );
+    this.ws.on('reset', (data) => this.reset(data));
+  }
+
+  reset(data: any) {
+    console.log("Reset DATA: ", data);
+  }
+
+  checkDataFromPayload(payload: any) {
+    console.log("Payload DATA", payload);
+    // @todo: implement
+  }
+
+  getProgressValue(): number {
+    return this.pain * 10;
   }
 }
+
+
