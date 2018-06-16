@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import {WebsocketService} from '../websocket.service';
 
 @Component({
@@ -8,15 +8,19 @@ import {WebsocketService} from '../websocket.service';
 })
 export class VideoShowComponent implements OnInit {
 
+  @ViewChild('videoEl') videoEl: ElementRef;
+
   constructor(
     private ws: WebsocketService
-  ) {
-    ws.on('video', (data) => {
-      console.log(data)
-    });
-  }
+  ) {}
 
   ngOnInit() {
+    console.log(this.videoEl);
+    this.ws.on('video', (data) => {
+      // console.log(data.message);
+      this.videoEl.nativeElement.src = data.message;
+      this.videoEl.nativeElement.play();
+    });
   }
 
 }
