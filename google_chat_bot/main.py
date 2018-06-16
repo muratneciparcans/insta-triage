@@ -17,10 +17,10 @@ def main():
 
     time.sleep(8)
 
-    server_function = partial(start_script, server)
+    script_function = partial(start_script, server)
 
     # # @TODO: Do I Have to sleep?
-    script_thread = threading.Thread(target = server_function)
+    script_thread = threading.Thread(target = script_function)
     script_thread.daemon = True
     script_thread.start()
 

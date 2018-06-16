@@ -1,7 +1,7 @@
 {
     "question_1": {
-        "text": "Please remain standing. 5, 4, 3, 2, 1",
-        "video": "some_file.mp4",
+        "text": "Please remain standing.",
+        "video": "remain_standing.mp4",
         "next": "question_2",
         "data": [{
             "start_date": "Fri Feb 08 2018 09:47:57 GMT +0530 (IST)"
@@ -53,9 +53,6 @@
             "right": "question_9",
             "any": "question_7"
         },
-        "data": [{
-            "pain": 8
-        }],
         "demo_answer":"On my left arm"
     },
     "question_8": {
@@ -68,6 +65,9 @@
             "ten": "question_11",
             "any": "question_10"
         },
+        "data": [{
+            "pain": 8
+        }],
         "demo_answer": "About eight"
     },
     "question_9": {
@@ -80,14 +80,17 @@
             "ten": "question_11",
             "any": "question_10"
         },
+        "data": [{
+            "pain": 8
+        }],
         "demo_answer": "About eight"
     },
     "question_10": {
-        "text": "Don’t worry James, it’s going to be alright.",
+        "text": "Dont worry James, its going to be alright.",
         "video": "allright.mp4"
     },
     "question_11": {
-        "text": "Don’t worry James, it’s going to be alright. I’ve already notified the medical staff.",
+        "text": "Dont worry James, its going to be alright. Ive already notified the medical staff.",
         "video": "alright_medical_stuff.mp4",
         "data": [{
                 "action": "Medical staff has been notified"

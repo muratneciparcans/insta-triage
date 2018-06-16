@@ -19,6 +19,8 @@ def start_script(server):
         raise Exception("Script has to start with question_1")
 
     while True:
+        time.sleep(0.5)
+
         current_question = script[question_key]
         
         # Joanna Question UI
@@ -33,13 +35,14 @@ def start_script(server):
 
         # Sleep for length of file
         time.sleep(get_length(video_path))
-        
+
         if "answer" in current_question:
-            
+            answers = current_question["answer"]
+
             if DEMO_MODE:
                 content = current_question["demo_answer"]
+                time.sleep(3)
             else:
-                answers = current_question["answer"]
                 data = record()
                 response = recognize(data, RATE)
 
@@ -68,23 +71,33 @@ def start_script(server):
                         print "Found " + answer + " in " + content
                         question_key = answers[answer]
                         found_answer = True
+
+                        update_form(server, current_question)
                         break;
 
                 if not found_answer:
                     question_key = answers["any"]
-        elif "data" in current_question:
-            for d in current_question["data"]:
-                server.send_data(d)
         elif "next" in current_question:
+            print 'found next'
             question_key = current_question["next"]
+            print question_key
+            update_form(server, current_question)
         else:
+            update_form(server, current_question)
             # End the questionaire
             break
+
+def update_form(server, current_question):
+    if "data" in current_question:
+        for d in current_question["data"]:
+            server.send_data(d)
 
 
 def get_length(filename):
   curr_path = os.path.dirname(utils.__file__)
   file_path = curr_path + '/../../web-frontend/src' + filename
+
+  print file_path
 
   assert (os.path.isfile(file_path)), "Should be a file"
   result = subprocess.Popen(["ffprobe", file_path], stdout = subprocess.PIPE, stderr = subprocess.STDOUT)
