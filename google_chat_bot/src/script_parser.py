@@ -5,7 +5,7 @@ from recorder import record
 from recorder import RATE
 from recognization import recognize
 
-def start_script():
+def start_script(server):
     file_directory = os.path.dirname(os.path.realpath(__file__))
     script_path = os.path.join(file_directory, 'resources/triage_script.json')
 
@@ -20,11 +20,11 @@ def start_script():
         current_question = script[question_key]
 
         # Joanna Question UI
-        print current_question["text"]
+        server.send_message('out', current_question["text"])
 
         # Video File
         video_path = os.path.join(file_directory, "videos", current_question["video"])
-        print video_path
+        server.send_video(video_path)
 
         if "answer" in current_question:
             answers = current_question["answer"]
@@ -38,7 +38,7 @@ def start_script():
             content = result.alternatives[0].transcript
 
             # Patient answer
-            print content
+            server.send_message('in', content)
 
 
             key_list = answers.keys();
