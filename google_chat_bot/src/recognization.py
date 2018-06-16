@@ -21,5 +21,5 @@ def recognize(content, rate):
     response = speech_client.recognize(speech_config, audio)
 
     # @TODO: Do something with the response
-    print response
+    return response
 

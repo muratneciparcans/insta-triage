@@ -51,7 +51,7 @@ def record():
             else: 
                 silent_chunks = 0
         elif not silent:
-            #print 'Audio recognized'
+            print "I started"
             audio_started = True
 
     print 'Detected silence'

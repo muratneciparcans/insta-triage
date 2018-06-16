@@ -1,0 +1,51 @@
+{
+    "question_1": {
+        "text": "Please remain standing. 5, 4, 3, 2, 1",
+        "video": "some_file.mp4",
+        "next": "question_2"
+    },
+    "question_2": {
+        "text": "You may sit now.",
+        "video": "some_file.mp4",
+        "next": "question_3"
+    },
+    "question_3": {
+        "text": "What is your name?",
+        "video": "some_file.mp4",
+        "answer": {
+            "any": "question_4"
+        }
+    },
+    "question_4": {
+        "text": "Hi James, It’s nice to meet you. Please tell me, do you feel pain?",
+        "video": "some_file.mp4",
+        "answer": {
+            "yes": "question_6",
+            "no": "question_5",
+            "any": "question_4"
+        }
+    },
+    "question_5": {
+        "text": "Thank you. Our assessment is now complete.",
+        "video": "some_file.mp4"
+    },
+    "question_6": {
+        "text": "It seems you feel pain in your left arm. On the scale of 0 to 10 (where 10 is completely unbearable), how much does it hurt?",
+        "video": "some_file.mp4",
+        "answer": {
+            "seven": "question_8",
+            "eight": "question_8",
+            "nine": "question_8",
+            "ten": "question_8",
+            "any": "question_7"
+        }
+    },
+    "question_7": {
+        "text": "Don’t worry James, it’s going to be alright.",
+        "video": "some_file.mp4"
+    },
+    "question_8": {
+        "text": "Don’t worry James, it’s going to be alright. I’ve already notified the medical staff.",
+        "video": "some_file.mp4"
+    }
+}
