@@ -8,57 +8,87 @@
         }]
     },
     "question_2": {
+        "text": "Five, four, three, two, one.",
+        "video": "countdown.mp4",
+        "next": "question_3"
+    },
+    "question_3": {
         "text": "You may sit now.",
-        "video": "some_file.mp4",
-        "next": "question_3",
+        "video": "you_may_sit.mp4",
+        "next": "question_4",
         "data": [{
             "estimated_waiting": "00:45"
         }]
     },
-    "question_3": {
+    "question_4": {
         "text": "What is your name?",
-        "video": "some_file.mp4",
+        "video": "what_name.mp4",
         "answer": {
-            "any": "question_4"
+            "any": "question_5"
         },
         "data": [{
             "name": "James Newton"
-        }]
-    },
-    "question_4": {
-        "text": "Hi James, It’s nice to meet you. Please tell me, do you feel pain?",
-        "video": "some_file.mp4",
-        "answer": {
-            "yes": "question_6",
-            "no": "question_5",
-            "any": "question_4"
-        }
+        }],
+        "demo_answer": "James Newton"
     },
     "question_5": {
-        "text": "Thank you. Our assessment is now complete.",
-        "video": "some_file.mp4"
+        "text": "Hi James, Its nice to meet you. Please tell me, do you feel pain?",
+        "video": "hi_james.mp4",
+        "answer": {
+            "yes": "question_7",
+            "no": "question_6",
+            "any": "question_5"
+        },
+        "demo_answer": "yes"
     },
     "question_6": {
-        "text": "It seems you feel pain in your left arm. On the scale of 0 to 10 (where 10 is completely unbearable), how much does it hurt?",
-        "video": "some_file.mp4",
+        "text": "Dont worry James, its gonna be allright",
+        "video": "allright.mp4"
+    },
+    "question_7": {
+        "text": "I am so sorry to hear that, could you please show me where do you feel pain, James?",
+        "video": "where_pain.mp4",
         "answer": {
-            "seven": "question_8",
-            "eight": "question_8",
-            "nine": "question_8",
-            "ten": "question_8",
+            "left": "question_8",
+            "right": "question_9",
             "any": "question_7"
         },
         "data": [{
             "pain": 8
-        }]
-    },
-    "question_7": {
-        "text": "Don’t worry James, it’s going to be alright.",
-        "video": "some_file.mp4"
+        }],
+        "demo_answer":"On my left arm"
     },
     "question_8": {
+        "text": "Ok, thank you. It seems you have pain in your left arm. On the scale of zero to ten, where ten is unbearable - how much does it hurt?",
+        "video": "how_much_left_arm.mp4",
+        "answer": {
+            "seven": "question_11",
+            "eight": "question_11",
+            "nine": "question_11",
+            "ten": "question_11",
+            "any": "question_10"
+        },
+        "demo_answer": "About eight"
+    },
+    "question_9": {
+        "text": "Ok, thank you. It seems you have pain in your right arm. On the scale of zero to ten, where ten is unbearable - how much does it hurt?",
+        "video": "how_much_left_arm.mp4",
+        "answer": {
+            "seven": "question_11",
+            "eight": "question_11",
+            "nine": "question_11",
+            "ten": "question_11",
+            "any": "question_10"
+        },
+        "demo_answer": "About eight"
+    },
+    "question_10": {
+        "text": "Don’t worry James, it’s going to be alright.",
+        "video": "allright.mp4"
+    },
+    "question_11": {
         "text": "Don’t worry James, it’s going to be alright. I’ve already notified the medical staff.",
-        "video": "some_file.mp4",
+        "video": "alright_medical_stuff.mp4",
         "data": [{
                 "action": "Medical staff has been notified"
             },{

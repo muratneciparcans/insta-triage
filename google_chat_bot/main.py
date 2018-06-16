@@ -15,6 +15,8 @@ def main():
     server_thread.daemon = True
     server_thread.start()
 
+    time.sleep(8)
+
     server_function = partial(start_script, server)
 
     # # @TODO: Do I Have to sleep?

@@ -9,6 +9,8 @@ from recorder import record
 from recorder import RATE
 from recognization import recognize
 
+DEMO_MODE = True
+
 def start_script(server):
     script = utils.load_script()
 
@@ -29,30 +31,33 @@ def start_script(server):
 
         server.send_video(video_path)
 
-        # Sleep for length of file (@TODO: Send still picture)
+        # Sleep for length of file
         time.sleep(get_length(video_path))
-
-        time.sleep(100000)
-
+        
         if "answer" in current_question:
-            answers = current_question["answer"]
-            data = record()
-            response = recognize(data, RATE)
+            
+            if DEMO_MODE:
+                content = current_question["demo_answer"]
+            else:
+                answers = current_question["answer"]
+                data = record()
+                response = recognize(data, RATE)
 
-            result = response.results[0]
-            if not result.alternatives:
-                continue
+                if len(response.results) == 0:
+                    continue
 
-            content = result.alternatives[0].transcript
+                result = response.results[0]
+                if not result.alternatives:
+                    continue
 
+                content = result.alternatives[0].transcript
+
+            
             # Patient answer
-            # server.send_message('in', content)
-
+            server.send_message('in', content)
 
             key_list = answers.keys();
             key_list.remove("any")
-
-            print key_list
 
             if not key_list:
                 question_key = answers["any"]
@@ -78,14 +83,9 @@ def start_script(server):
 
 def get_length(filename):
   curr_path = os.path.dirname(utils.__file__)
-  print curr_path
-  # file_path = os.path.join(curr_path, '../../web-frontend/src', filename)
   file_path = curr_path + '/../../web-frontend/src' + filename
-  print "fle path: -----"
-  print file_path
-  print "----"
 
-  assert (not os.path.isfile(file_path)), "Should be a file"
+  assert (os.path.isfile(file_path)), "Should be a file"
   result = subprocess.Popen(["ffprobe", file_path], stdout = subprocess.PIPE, stderr = subprocess.STDOUT)
   first_parsing = [x for x in result.stdout.readlines() if "Duration" in x]
   print result.stdout.readlines()
