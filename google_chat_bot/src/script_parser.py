@@ -9,11 +9,7 @@ from recorder import RATE
 from recognization import recognize
 
 def start_script(server):
-    file_directory = os.path.dirname(os.path.realpath(__file__))
-    script_path = os.path.join(file_directory, 'resources/triage_script.json')
-
-    with open(script_path) as f:
-        script = json.load(f)
+    script = utils.load_script()
 
     question_key = "question_1"
     if question_key not in script:

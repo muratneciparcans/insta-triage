@@ -4,6 +4,8 @@ from flask import Flask, render_template, request
 from flask_socketio import SocketIO
 from flask_restful import Resource, Api
 
+import utils
+
 class Server(object):
     def __init__(self):
         self.app = Flask(__name__)
@@ -46,12 +48,25 @@ class TestStuff:
 
     class Data(Resource):
         def get(self, question):
-            server.send_data(question)
+            script = utils.load_script()
+            for d in script[question]['data']:
+                server.send_data()
+
+    class AllData(Resource):
+        def get(self):
+            script = utils.load_script()
+            """ send all question data for testing
+            """
+            for k, v in script.iteritems():
+                if 'data' in v.keys():
+                    for d in v['data']:
+                        server.send_data(d)
 
     def __init__(self, server):
         server.api.add_resource(TestStuff.Message, '/message/<string:id>/<string:direction>')
         server.api.add_resource(TestStuff.Video, '/video/<string:path>')
         server.api.add_resource(TestStuff.Data, '/data/<string:question>')
+        server.api.add_resource(TestStuff.AllData, '/all_data')
 
 if __name__ == '__main__':
     server = Server()
