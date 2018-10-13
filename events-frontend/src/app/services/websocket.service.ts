@@ -4,12 +4,15 @@ import * as io from 'socket.io-client';
 import * as ss from 'socket.io-stream';
 
 import { WebCamComponent } from 'ng2-webcam';
+import { environment } from "../../environments/environment";
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class WebsocketService {
 
   // stuff
-  private url = 'http://localhost:5000';
+  private url = environment.baseURL;
   private socket;
 
   constructor() {

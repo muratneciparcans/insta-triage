@@ -1,14 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
-
 import { AppComponent } from './app.component';
-import { VideoShowComponent } from './video-show/video-show.component';
-import { ConversationComponent } from './conversation/conversation.component';
-import { MessageComponent } from './message/message.component';
-import { WebsocketService } from './websocket.service';
-
+import { VideoShowComponent } from './views/video-show/video-show.component';
+import { ConversationComponent } from './views/conversation/conversation.component';
+import { MessageComponent } from './views/message/message.component';
 
 @NgModule({
   declarations: [
@@ -21,9 +17,7 @@ import { WebsocketService } from './websocket.service';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [
-    WebsocketService
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

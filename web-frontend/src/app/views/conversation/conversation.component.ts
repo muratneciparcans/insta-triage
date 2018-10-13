@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Direction, MessageModel } from '../models/message.model';
-import {WebsocketService} from '../websocket.service';
+import { Direction, MessageModel } from '../../models/message.model';
+import {WebsocketService} from '../../services/websocket.service';
 
 @Component({
   selector: 'app-conversation',

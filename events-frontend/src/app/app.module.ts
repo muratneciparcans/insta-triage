@@ -1,13 +1,12 @@
+
+//Core
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
-
 import { AppComponent } from './app.component';
 
+//Modules
 import { MomentModule } from 'ngx-moment';
-
-import { WebsocketService } from './websocket.service';
 
 @NgModule({
   declarations: [
@@ -18,9 +17,7 @@ import { WebsocketService } from './websocket.service';
     AppRoutingModule,
     MomentModule
   ],
-  providers: [
-    WebsocketService
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
